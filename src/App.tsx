@@ -10,13 +10,13 @@ import Contact from './components/Contact'
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const mainRef = useRef<HTMLDivElement>(null)
   const lastScrollY = useRef(0)
   const scrollTimeout = useRef<NodeJS.Timeout>()
 
   useEffect(() => {
-    const scrollContainer = scrollContainerRef.current
-    if (!scrollContainer) return
+    const mainElement = mainRef.current
+    if (!mainElement) return
 
     const handleScroll = () => {
       if (scrollTimeout.current) {
@@ -24,20 +24,19 @@ function App() {
       }
 
       scrollTimeout.current = setTimeout(() => {
-        const currentScrollY = scrollContainer.scrollTop
-        const scrollDiff = currentScrollY - lastScrollY.current
+        const currentScrollY = mainElement.scrollTop
         
-        // Update scroll state
-        setIsScrolled(currentScrollY > 100)
+        // Update scroll state with a higher threshold
+        setIsScrolled(currentScrollY > 150)
         
         // Update last scroll position
         lastScrollY.current = currentScrollY
       }, 10)
     }
 
-    scrollContainer.addEventListener('scroll', handleScroll)
+    mainElement.addEventListener('scroll', handleScroll)
     return () => {
-      scrollContainer.removeEventListener('scroll', handleScroll)
+      mainElement.removeEventListener('scroll', handleScroll)
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current)
       }
@@ -47,79 +46,65 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* Theme Elements */}
-        <div className="theme-leaf"></div>
-        <div className="theme-leaf"></div>
-        <div className="theme-leaf"></div>
-        <div className="theme-wave"></div>
+        {/* Theme subtle decorative elements */}
+        <div className="theme-elements">
+          <div className="theme-leaf"></div>
+          <div className="theme-leaf"></div>
+          <div className="theme-leaf"></div>
+          <div className="theme-wave"></div>
+        </div>
 
-        {/* Header */}
-        <header className={`header-wrapper ${isScrolled ? 'scrolled' : ''}`}>
-          <div className="header-content">
-            <h1 className="text-4xl font-trojan">
-              <span className="header-symbol">⚜</span>
+        {/* Sticky header - appears when scrolled */}
+        <header className={`sticky-header ${isScrolled ? 'visible' : ''}`}>
+          <div className="container mx-auto">
+            <h1 className="text-center text-glow font-trojan">
+              <span className="header-symbol-small">⚜</span>
               Ronit Shah
-              <span className="header-symbol">⚜</span>
+              <span className="header-symbol-small">⚜</span>
             </h1>
-            {!isScrolled && (
-              <p className="text-lg text-gray-600 mt-2">
-                Low-Level Game Developer
-              </p>
-            )}
           </div>
         </header>
 
-        {/* Navigation */}
-        <nav className="nav-container">
-          <div className="container mx-auto">
-            <ul className="flex justify-center space-x-8">
-              <li>
-                <Link to="/" className="nav-link">Home</Link>
-              </li>
-              <li>
-                <Link to="/projects" className="nav-link">Projects</Link>
-              </li>
-              <li>
-                <Link to="/blog" className="nav-link">Blog</Link>
-              </li>
-              <li>
-                <Link to="/about" className="nav-link">About</Link>
-              </li>
-              <li>
-                <Link to="/contact" className="nav-link">Contact</Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
         {/* Main Content */}
-        <main className="scroll-container">
+        <main ref={mainRef} className="scroll-container-no-nav overflow-auto">
           <Routes>
             <Route path="/" element={
               <>
                 <section className="hero-section">
                   <div className="container mx-auto text-center">
-                    <h2 className="section-title">Welcome</h2>
-                    <p className="text-xl mb-8">
+                    <div className="decorative-corner"></div>
+                    <div className="decorative-corner"></div>
+                    <div className="decorative-corner"></div>
+                    <div className="decorative-corner"></div>
+                    <h1 className="font-trojan text-glow mb-6 hero-title">
+                      <span className="header-symbol">⚜</span>
+                      Ronit Shah
+                      <span className="header-symbol">⚜</span>
+                    </h1>
+                    <p className="text-xl mb-10 max-w-2xl mx-auto animated-gradient p-6 rounded-lg shadow-sm">
                       Specializing in low-level game development, focusing on performance optimization, 
                       memory management, and graphics programming.
                     </p>
-                    <div className="flex justify-center space-x-4">
+                    <div className="flex justify-center space-x-6 flex-wrap gap-4 mt-4">
                       <Link to="/projects" className="submit-button">View Projects</Link>
                       <Link to="/contact" className="submit-button">Get in Touch</Link>
                     </div>
                   </div>
                 </section>
 
+                <div className="mythical-divider mx-auto w-3/4"></div>
+
                 <section className="section">
                   <div className="container mx-auto">
-                    <h2 className="section-title">Featured Projects</h2>
+                    <h2 className="section-title text-center text-glow">Featured Projects</h2>
                     <div className="project-grid">
                       <div className="project-card">
-                        <img src="/project1.jpg" alt="Project 1" className="project-image" />
+                        <div className="project-image-container">
+                          <img src="/project1.jpg" alt="Project 1" className="project-image" />
+                        </div>
                         <div className="project-content">
-                          <h3>Game Engine Core</h3>
-                          <p>Custom game engine with focus on memory optimization and efficient rendering.</p>
+                          <h3 className="text-xl font-trojan mb-2">Game Engine Core</h3>
+                          <p className="mb-4">Custom game engine with focus on memory optimization and efficient rendering.</p>
                           <div className="project-tags">
                             <span className="project-tag">C++</span>
                             <span className="project-tag">OpenGL</span>
@@ -128,10 +113,12 @@ function App() {
                         </div>
                       </div>
                       <div className="project-card">
-                        <img src="/project2.jpg" alt="Project 2" className="project-image" />
+                        <div className="project-image-container">
+                          <img src="/project2.jpg" alt="Project 2" className="project-image" />
+                        </div>
                         <div className="project-content">
-                          <h3>Physics Engine</h3>
-                          <p>High-performance physics simulation with custom collision detection.</p>
+                          <h3 className="text-xl font-trojan mb-2">Physics Engine</h3>
+                          <p className="mb-4">High-performance physics simulation with custom collision detection.</p>
                           <div className="project-tags">
                             <span className="project-tag">C++</span>
                             <span className="project-tag">SIMD</span>
@@ -140,33 +127,57 @@ function App() {
                         </div>
                       </div>
                     </div>
+                    <div className="text-center mt-8">
+                      <Link to="/projects" className="submit-button">View All Projects</Link>
+                    </div>
                   </div>
                 </section>
 
+                <div className="mythical-divider mx-auto w-3/4"></div>
+
                 <section className="section">
                   <div className="container mx-auto">
-                    <h2 className="section-title">Latest Blog Posts</h2>
+                    <h2 className="section-title text-center text-glow">Latest Blog Posts</h2>
                     <div className="blog-preview">
                       <div className="blog-card">
                         <div className="p-6">
                           <div className="blog-date">March 15, 2024</div>
-                          <h3>Memory Management in Game Development</h3>
+                          <h3 className="text-xl font-trojan mb-2">Memory Management in Game Development</h3>
                           <p className="blog-excerpt">
                             Exploring advanced memory management techniques for high-performance games...
                           </p>
-                          <Link to="/blog/memory-management" className="text-accent-1">Read More</Link>
+                          <Link to="/blog/memory-management" className="fancy-link inline-block mt-4 font-semibold">Read More</Link>
                         </div>
                       </div>
                       <div className="blog-card">
                         <div className="p-6">
                           <div className="blog-date">March 10, 2024</div>
-                          <h3>Optimizing Game Physics</h3>
+                          <h3 className="text-xl font-trojan mb-2">Optimizing Game Physics</h3>
                           <p className="blog-excerpt">
                             Techniques for improving physics simulation performance in real-time games...
                           </p>
-                          <Link to="/blog/physics-optimization" className="text-accent-1">Read More</Link>
+                          <Link to="/blog/physics-optimization" className="fancy-link inline-block mt-4 font-semibold">Read More</Link>
                         </div>
                       </div>
+                    </div>
+                    <div className="text-center mt-8">
+                      <Link to="/blog" className="submit-button">Read All Articles</Link>
+                    </div>
+                  </div>
+                </section>
+
+                <div className="mythical-divider mx-auto w-3/4"></div>
+
+                <section className="section">
+                  <div className="container mx-auto">
+                    <h2 className="section-title text-center text-glow">Get In Touch</h2>
+                    <div className="max-w-2xl mx-auto mythical-border">
+                      <p className="mb-6 text-center">
+                        Interested in collaborating or discussing my work? Feel free to reach out.
+                      </p>
+                      <Link to="/contact" className="submit-button block mx-auto text-center w-fit">
+                        Contact Me
+                      </Link>
                     </div>
                   </div>
                 </section>
@@ -183,14 +194,14 @@ function App() {
         <footer className="footer-wrapper">
           <div className="container mx-auto">
             <div className="footer-content">
-              <div className="footer-links">
+              <div className="footer-links flex justify-center space-x-4">
                 <Link to="/" className="footer-link">Home</Link>
                 <Link to="/projects" className="footer-link">Projects</Link>
                 <Link to="/blog" className="footer-link">Blog</Link>
                 <Link to="/about" className="footer-link">About</Link>
                 <Link to="/contact" className="footer-link">Contact</Link>
               </div>
-              <p className="footer-copyright">
+              <p className="footer-copyright text-xs text-center">
                 © {new Date().getFullYear()} Ronit Shah. All rights reserved.
               </p>
             </div>
