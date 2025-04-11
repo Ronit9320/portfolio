@@ -56,13 +56,9 @@ function App() {
 
         {/* Sticky header - appears when scrolled */}
         <header className={`sticky-header ${isScrolled ? 'visible' : ''}`}>
-          <div className="container mx-auto">
-            <h1 className="text-center text-glow font-trojan">
-              <span className="header-symbol-small">⚜</span>
-              Ronit Shah
-              <span className="header-symbol-small">⚜</span>
-            </h1>
-          </div>
+          <h1 className="text-center text-glow font-trojan w-full">
+            ⚜ Ronit Shah ⚜
+          </h1>
         </header>
 
         {/* Main Content */}
@@ -76,10 +72,8 @@ function App() {
                     <div className="decorative-corner"></div>
                     <div className="decorative-corner"></div>
                     <div className="decorative-corner"></div>
-                    <h1 className="font-trojan text-glow mb-6 hero-title">
-                      <span className="header-symbol">⚜</span>
-                      Ronit Shah
-                      <span className="header-symbol">⚜</span>
+                    <h1 className="font-trojan text-glow mb-6 hero-title text-center">
+                      ⚜ Ronit Shah ⚜
                     </h1>
                     <p className="text-xl mb-10 max-w-2xl mx-auto animated-gradient p-6 rounded-lg shadow-sm">
                       Specializing in low-level game development, focusing on performance optimization, 

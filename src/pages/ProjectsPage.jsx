@@ -85,17 +85,17 @@ const ProjectsPage = () => {
           {projects.map((project, index) => (
             <div key={project.id} id={project.id} className="group">
               <div className="grid md:grid-cols-2 gap-8 items-start">
-                <div className={`bg-gradient-to-br ${index % 2 === 0 ? 'from-autumn-100 to-forest-50' : 'from-forest-50 to-autumn-100'} rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 h-full`}>
-                  <h2 className="text-2xl md:text-3xl font-bold mb-4 text-forest-800">{project.title}</h2>
-                  <p className="text-forest-700 mb-6">{project.longDescription}</p>
+                <div className={`bg-gradient-to-br ${index % 2 === 0 ? 'from-autumn-100 to-forest-50' : 'from-forest-50 to-autumn-100'} rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 h-full overflow-hidden`}>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-4 text-forest-800 overflow-hidden text-ellipsis">{project.title}</h2>
+                  <p className="text-forest-700 mb-6 overflow-hidden">{project.longDescription}</p>
                   
-                  <div className="mb-6">
+                  <div className="mb-6 overflow-hidden">
                     <h3 className="text-lg font-medium text-autumn-700 mb-2">Technologies</h3>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech, techIndex) => (
                         <span 
                           key={techIndex} 
-                          className="px-3 py-1 bg-white bg-opacity-50 rounded-full text-sm text-forest-700"
+                          className="px-3 py-1 bg-white bg-opacity-50 rounded-full text-sm text-forest-700 overflow-hidden text-ellipsis"
                         >
                           {tech}
                         </span>
@@ -103,13 +103,13 @@ const ProjectsPage = () => {
                     </div>
                   </div>
                   
-                  <div className="mb-6">
+                  <div className="mb-6 overflow-hidden">
                     <h3 className="text-lg font-medium text-autumn-700 mb-2">Key Features</h3>
                     <ul className="space-y-2">
                       {project.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-start">
-                          <span className="text-autumn-600 mr-2">•</span>
-                          <span className="text-forest-700">{feature}</span>
+                          <span className="text-autumn-600 mr-2 flex-shrink-0">•</span>
+                          <span className="text-forest-700 overflow-hidden">{feature}</span>
                         </li>
                       ))}
                     </ul>

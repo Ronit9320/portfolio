@@ -117,8 +117,8 @@ const ContactPage = () => {
             </div>
           </div>
           
-          <div className="bg-white bg-opacity-80 backdrop-blur-sm rounded-lg shadow-md p-8">
-            <h2 className="text-2xl font-bold mb-6 text-forest-800">Send a Message</h2>
+          <div className="bg-white bg-opacity-80 backdrop-blur-sm rounded-lg shadow-md p-6 md:p-8 overflow-hidden">
+            <h2 className="text-2xl font-bold mb-6 text-forest-800 overflow-hidden text-ellipsis">Send a Message</h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -132,7 +132,7 @@ const ContactPage = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-forest-200 rounded-md focus:ring-2 focus:ring-autumn-500 focus:border-transparent outline-none transition-colors"
+                  className="w-full px-4 py-2 border border-forest-200 rounded-md focus:ring-2 focus:ring-autumn-500 focus:border-transparent outline-none transition-colors max-w-full"
                   placeholder="Your name"
                 />
               </div>
@@ -148,7 +148,7 @@ const ContactPage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-forest-200 rounded-md focus:ring-2 focus:ring-autumn-500 focus:border-transparent outline-none transition-colors"
+                  className="w-full px-4 py-2 border border-forest-200 rounded-md focus:ring-2 focus:ring-autumn-500 focus:border-transparent outline-none transition-colors max-w-full"
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -164,7 +164,7 @@ const ContactPage = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-forest-200 rounded-md focus:ring-2 focus:ring-autumn-500 focus:border-transparent outline-none transition-colors"
+                  className="w-full px-4 py-2 border border-forest-200 rounded-md focus:ring-2 focus:ring-autumn-500 focus:border-transparent outline-none transition-colors max-w-full"
                   placeholder="What's this about?"
                 />
               </div>
@@ -180,17 +180,19 @@ const ContactPage = () => {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-2 border border-forest-200 rounded-md focus:ring-2 focus:ring-autumn-500 focus:border-transparent outline-none transition-colors resize-none"
+                  className="w-full px-4 py-2 border border-forest-200 rounded-md focus:ring-2 focus:ring-autumn-500 focus:border-transparent outline-none transition-colors resize-none max-w-full"
                   placeholder="Your message here..."
                 ></textarea>
               </div>
               
-              <button
-                type="submit"
-                className="px-6 py-3 bg-autumn-600 text-white rounded-md hover:bg-autumn-700 transition-colors shadow-md w-full md:w-auto"
-              >
-                Send Message
-              </button>
+              <div className="flex justify-center md:justify-start">
+                <button
+                  type="submit"
+                  className="px-6 py-3 bg-autumn-600 text-white rounded-md hover:bg-autumn-700 transition-colors shadow-md w-full md:w-auto"
+                >
+                  Send Message
+                </button>
+              </div>
             </form>
           </div>
         </div>

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const TutorialsPage = () => {
+  const [activeContent, setActiveContent] = useState(null);
+
   const tutorials = [
     {
       id: 'opengl-basics',
@@ -194,8 +196,12 @@ We'll implement a simple physics system and show how to integrate with existing 
     }
   ];
 
+  const toggleContent = (index) => {
+    setActiveContent(activeContent === index ? null : index);
+  };
+
   return (
-    <div className="pt-24 pb-16 min-h-screen bg-gradient-to-br from-forest-50 via-white to-sky-50">
+    <div className="pt-24 pb-16 min-h-screen bg-gradient-to-br from-autumn-50 via-white to-forest-50">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <h1 className="text-4xl md:text-5xl font-bold mb-8 text-forest-800 inline-block relative">
           <span className="relative z-10">Tutorials & Guides</span>
@@ -207,92 +213,78 @@ We'll implement a simple physics system and show how to integrate with existing 
           These guides focus on practical implementation and understanding core concepts.
         </p>
         
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="space-y-16">
           {tutorials.map((tutorial, index) => (
-            <div 
-              key={tutorial.id}
-              id={tutorial.id}
-              className="bg-white bg-opacity-80 backdrop-blur-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col"
-            >
-              <div className={`h-2 ${
-                tutorial.difficulty === 'Beginner' ? 'bg-forest-500' :
-                tutorial.difficulty === 'Intermediate' ? 'bg-autumn-500' :
-                'bg-sky-500'
-              }`}></div>
-              
-              <div className="p-6 flex-grow">
-                <div className="flex justify-between items-start mb-4">
-                  <h2 className="text-2xl font-bold text-forest-800">{tutorial.title}</h2>
-                  <span className={`px-3 py-1 rounded-full text-sm ${
-                    tutorial.difficulty === 'Beginner' ? 'bg-forest-100 text-forest-700' :
-                    tutorial.difficulty === 'Intermediate' ? 'bg-autumn-100 text-autumn-700' :
-                    'bg-sky-100 text-sky-700'
-                  }`}>
-                    {tutorial.difficulty}
-                  </span>
-                </div>
-                
-                <p className="text-forest-700 mb-4">{tutorial.description}</p>
-                
-                <div className="mb-6">
-                  <div className="text-sm text-forest-600 mb-2">Topics covered:</div>
-                  <div className="flex flex-wrap gap-2">
-                    {tutorial.topics.map((topic, topicIndex) => (
-                      <span 
-                        key={topicIndex} 
-                        className="px-2 py-1 bg-forest-50 rounded-md text-xs text-forest-700"
-                      >
-                        {topic}
+            <div key={tutorial.id} id={tutorial.id} className="group">
+              <div className="grid md:grid-cols-2 gap-8 items-start">
+                <div className={`bg-gradient-to-br ${index % 2 === 0 ? 'from-autumn-100 to-forest-50' : 'from-forest-50 to-autumn-100'} rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 h-full overflow-hidden`}>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-4 text-forest-800 overflow-hidden text-ellipsis">{tutorial.title}</h2>
+                  <p className="text-forest-700 mb-6 overflow-hidden">{tutorial.description}</p>
+                  
+                  <div className="mb-6 overflow-hidden">
+                    <h3 className="text-lg font-medium text-autumn-700 mb-2">Topics Covered</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {tutorial.topics.map((topic, topicIndex) => (
+                        <span 
+                          key={topicIndex} 
+                          className="px-3 py-1 bg-white bg-opacity-50 rounded-full text-sm text-forest-700 overflow-hidden text-ellipsis"
+                        >
+                          {topic}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                      <span className={`px-3 py-1 rounded-full text-xs ${
+                        tutorial.difficulty === 'Beginner' ? 'bg-forest-100 text-forest-700' :
+                        tutorial.difficulty === 'Intermediate' ? 'bg-autumn-100 text-autumn-700' :
+                        'bg-sky-100 text-sky-700'
+                      }`}>
+                        {tutorial.difficulty}
                       </span>
-                    ))}
+                      <span className="text-sm text-forest-600">{tutorial.estimatedTime}</span>
+                    </div>
+                    <button 
+                      onClick={() => toggleContent(index)}
+                      className="inline-flex items-center px-4 py-2 bg-forest-600 text-white rounded-md hover:bg-forest-700 transition-colors shadow-sm"
+                    >
+                      {activeContent === index ? 'Hide Content' : 'Read Tutorial'}
+                    </button>
                   </div>
                 </div>
                 
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-forest-600">{tutorial.estimatedTime}</span>
-                  <a 
-                    href={`#tutorial-content-${index}`} 
-                    className="inline-block px-4 py-2 bg-autumn-600 text-white rounded-md hover:bg-autumn-700 transition-colors shadow-sm"
-                  >
-                    Read Tutorial
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        <div className="space-y-16">
-          {tutorials.map((tutorial, index) => (
-            <div key={`content-${tutorial.id}`} id={`tutorial-content-${index}`} className="bg-white bg-opacity-90 backdrop-blur-sm rounded-lg shadow-md p-8">
-              <h2 className="text-3xl font-bold mb-6 text-forest-800">{tutorial.title}</h2>
-              <div className="flex flex-wrap gap-4 mb-6">
-                <span className={`px-3 py-1 rounded-full text-sm ${
-                  tutorial.difficulty === 'Beginner' ? 'bg-forest-100 text-forest-700' :
-                  tutorial.difficulty === 'Intermediate' ? 'bg-autumn-100 text-autumn-700' :
-                  'bg-sky-100 text-sky-700'
-                }`}>
-                  {tutorial.difficulty}
-                </span>
-                <span className="px-3 py-1 bg-forest-50 rounded-full text-sm text-forest-700">
-                  {tutorial.estimatedTime}
-                </span>
-              </div>
-              
-              <div className="prose prose-lg max-w-none prose-headings:text-forest-800 prose-a:text-autumn-600 prose-strong:text-forest-700">
-                <div className="whitespace-pre-line">
-                  {tutorial.content}
+                <div className="bg-white bg-opacity-60 backdrop-blur-sm rounded-lg p-6 shadow-md h-64 flex items-center justify-center">
+                  <div className="text-center text-forest-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto mb-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    <p>Tutorial Guide</p>
+                    <p className="text-sm text-forest-500">Click 'Read Tutorial' to expand</p>
+                  </div>
                 </div>
               </div>
               
-              <div className="mt-8 pt-6 border-t border-forest-100">
-                <a 
-                  href="#tutorials" 
-                  className="inline-block px-4 py-2 border border-forest-600 text-forest-700 rounded-md hover:bg-forest-50 transition-colors"
-                >
-                  Back to Tutorials
-                </a>
-              </div>
+              {/* Expanded Tutorial Content */}
+              {activeContent === index && (
+                <div className="mt-8 bg-white bg-opacity-90 backdrop-blur-sm rounded-lg shadow-md p-8 transition-all duration-300">
+                  <div className="prose prose-lg max-w-none prose-headings:text-forest-800 prose-a:text-autumn-600 prose-strong:text-forest-700 overflow-hidden">
+                    <div className="whitespace-pre-wrap break-words overflow-auto">
+                      {tutorial.content}
+                    </div>
+                  </div>
+                  
+                  <div className="mt-8 pt-6 border-t border-forest-100 flex justify-end">
+                    <button 
+                      onClick={() => toggleContent(index)}
+                      className="inline-block px-4 py-2 border border-forest-600 text-forest-700 rounded-md hover:bg-forest-50 transition-colors"
+                    >
+                      Hide Tutorial
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
