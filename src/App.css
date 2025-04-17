@@ -14,7 +14,7 @@
   overflow-x: hidden;
   font-family: 'Open Sans', sans-serif;
   color: var(--color-text-primary);
-  background: var(--color-base);
+  background: transparent;
 }
 
 /* Main area styling */
@@ -22,6 +22,9 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: transparent;
+  position: relative;
+  z-index: 1;
 }
 
 /* Project grid styles */

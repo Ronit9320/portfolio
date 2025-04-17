@@ -1,0 +1,19 @@
+{
+  "name": "Ronit Shah - Portfolio",
+  "short_name": "Portfolio",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "32x32",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/leaf.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#D2691E",
+  "background_color": "#ffffff",
+  "display": "standalone"
+} 
