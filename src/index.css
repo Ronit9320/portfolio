@@ -1159,3 +1159,28 @@ input, textarea, select {
 .mythical-border:hover {
   background: linear-gradient(135deg, rgba(106, 90, 205, 0.04), transparent);
 }
+
+/* Specific override for About page background section */
+.about-section .background-content h3,
+.about-section .background-content p,
+.about-section .content-column h3,
+.about-section .content-column p {
+  text-align: left !important;
+  margin-left: 0 !important;
+  max-width: 100% !important;
+}
+
+.about-section .content-column {
+  display: block !important;
+  text-align: left !important;
+}
+
+.about-section .grid {
+  grid-template-columns: 5fr 7fr;
+}
+
+@media (max-width: 768px) {
+  .about-section .grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -3,68 +3,84 @@ import React from 'react';
 const ProjectsPage = () => {
   const projects = [
     {
+      id: 'neovim-config',
+      title: "Neovim Config",
+      description: "Custom Neovim configuration with focus on creating a productive development environment.",
+      longDescription: "A highly customized Neovim configuration built with Lua, designed to create a productive and efficient development environment. Features include custom keybindings, plugins integration, and optimized workflows to enhance coding efficiency.",
+      technologies: ["Lua", "Neovim", "API Integration", "Vim Script"],
+      features: [
+        "Custom keybinding system for enhanced productivity",
+        "Integrated development tools and linters",
+        "Personalized themes and UI enhancements",
+        "Plugin management and configuration",
+        "Tailored for multiple programming languages"
+      ],
+      imageUrl: "/path/to/neovim-config.jpg",
+      githubUrl: "https://github.com/username/neovim-config"
+    },
+    {
       id: 'last-crusade',
       title: "The Last Crusade",
-      description: "A reimagined version of Space Invaders with modern gameplay mechanics and visual effects. Built from scratch using C++ and OpenGL.",
-      longDescription: "The Last Crusade is a modern take on the classic Space Invaders game, featuring enhanced graphics, dynamic enemy behavior, and a compelling narrative. The game was built from the ground up using C++ and OpenGL, with a focus on performance optimization and smooth gameplay.",
-      technologies: ["C++", "OpenGL", "GLSL", "SDL2", "Custom Physics Engine"],
+      description: "A game featuring immersive gameplay and modern graphics. Built with a custom rendering pipeline and physics system.",
+      longDescription: "The Last Crusade is a game developed from scratch using C++, OpenGL, and SDL3. It features a custom rendering pipeline, physics system, and immersive gameplay mechanics.",
+      technologies: ["C++", "OpenGL", "GLSL", "SDL3", "Custom Physics Engine"],
       features: [
         "Custom rendering pipeline with modern shader effects",
-        "Dynamic enemy AI with varied attack patterns",
-        "Procedurally generated levels for endless gameplay",
-        "Performance-optimized collision detection system",
-        "Immersive sound design with spatial audio"
+        "Advanced physics simulation for realistic interactions",
+        "Immersive gameplay mechanics and design",
+        "Optimized performance for smooth gameplay experience",
+        "Modern graphics techniques and visual effects"
       ],
       imageUrl: "/path/to/last-crusade.jpg",
       githubUrl: "https://github.com/username/last-crusade"
     },
     {
-      id: 'boss-rush',
-      title: "Boss Rush Game",
-      description: "An untitled boss rush game featuring challenging encounters and precise combat mechanics. Developed with Godot Engine.",
-      longDescription: "This untitled boss rush game focuses on delivering intense, challenging boss encounters that test players' skills and reflexes. Each boss features unique mechanics and attack patterns, requiring players to learn and adapt their strategies. The game was developed using Godot Engine, with custom shaders and a focus on responsive controls.",
-      technologies: ["Godot Engine", "GDScript", "Custom Shaders", "Pixel Art"],
+      id: 'unnamed-game',
+      title: "Unnamed Game",
+      description: "Work-in-progress game using the same technology stack as The Last Crusade. Features advanced rendering techniques and gameplay mechanics.",
+      longDescription: "This unnamed game project uses the same technology stack as The Last Crusade (C++, OpenGL, SDL3) but explores different gameplay mechanics and advanced rendering techniques. It's currently in development with regular updates and feature additions.",
+      technologies: ["C++", "OpenGL", "GLSL", "SDL3", "Entity Component System"],
       features: [
-        "Multiple unique boss encounters with distinct mechanics",
-        "Tight, responsive controls for precise movement",
-        "Progression system with unlockable abilities",
-        "Hand-crafted pixel art and animations",
-        "Dynamic difficulty scaling based on player performance"
+        "Advanced rendering techniques and visual effects",
+        "Unique gameplay mechanics and systems",
+        "Efficient entity component system architecture",
+        "Performance-optimized graphics pipeline",
+        "Immersive game world and interactions"
       ],
-      imageUrl: "/path/to/boss-rush.jpg",
-      githubUrl: "https://github.com/username/boss-rush"
+      imageUrl: "/path/to/unnamed-game.jpg",
+      githubUrl: "https://github.com/username/unnamed-game"
     },
     {
-      id: 'vulkan-renderer',
-      title: "Vulkan Renderer",
-      description: "A custom rendering engine built with Vulkan API, focusing on modern graphics techniques and performance.",
-      longDescription: "This Vulkan-based rendering engine was developed to explore modern graphics programming techniques while maintaining high performance. The project implements various rendering features like physically-based rendering, dynamic lighting, and post-processing effects, all optimized for modern GPU architectures.",
-      technologies: ["C++", "Vulkan", "GLSL", "CMake", "ImGui"],
+      id: 'cmake-gen',
+      title: "CMake Generator CLI",
+      description: "Command-line tool for automatically generating CMake project structures. Streamlines project setup and build configuration management.",
+      longDescription: "The CMake Generator CLI is a powerful tool developed in C++ that automates the creation and management of CMake project structures. It simplifies the process of setting up build configurations for C++ projects, saving development time and reducing configuration errors.",
+      technologies: ["C++", "CMake", "CLI Development", "Project Management"],
       features: [
-        "Physically-based rendering pipeline",
-        "Deferred shading with multiple light types",
-        "Screen-space ambient occlusion and reflections",
-        "Efficient GPU memory management",
-        "Real-time shader hot-reloading for rapid development"
+        "Automated CMake project structure generation",
+        "Template-based project creation",
+        "Dependency management integration",
+        "Cross-platform build configuration",
+        "Custom build options and flags management"
       ],
-      imageUrl: "/path/to/vulkan-renderer.jpg",
-      githubUrl: "https://github.com/username/vulkan-renderer"
+      imageUrl: "/path/to/cmake-gen.jpg",
+      githubUrl: "https://github.com/username/cmake-generator"
     },
     {
-      id: 'love2d-game',
-      title: "LÖVE2D Platformer",
-      description: "A lightweight 2D platformer game created with LÖVE2D framework and Lua scripting.",
-      longDescription: "This platformer game showcases the capabilities of the LÖVE2D framework combined with efficient Lua scripting. The game features smooth physics, responsive controls, and a charming art style, all while maintaining excellent performance on various platforms.",
-      technologies: ["Lua", "LÖVE2D", "Box2D Physics", "Tiled Map Editor"],
+      id: 'game-engine',
+      title: "Game Engine",
+      description: "Custom game engine with focus on low-level optimization and memory management. Designed for maximum performance with minimal resource usage.",
+      longDescription: "A custom-built game engine developed in C++ with a focus on low-level optimization and efficient memory management. The engine is designed to provide maximum performance with minimal resource usage, making it ideal for resource-intensive games and applications.",
+      technologies: ["C++", "OpenGL", "Custom Memory Allocator", "Entity Component System"],
       features: [
-        "Fluid character movement and platforming mechanics",
-        "Level editor integration with Tiled",
-        "Particle systems for visual effects",
-        "Cross-platform compatibility",
-        "Optimized collision detection and resolution"
+        "Optimized memory management system",
+        "Efficient rendering pipeline",
+        "Custom physics simulation",
+        "Data-oriented design approach",
+        "Component-based architecture for flexibility"
       ],
-      imageUrl: "/path/to/love2d-game.jpg",
-      githubUrl: "https://github.com/username/love2d-platformer"
+      imageUrl: "/path/to/game-engine.jpg",
+      githubUrl: "https://github.com/username/game-engine"
     }
   ];
 

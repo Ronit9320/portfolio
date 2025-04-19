@@ -4,13 +4,13 @@ const ProjectHighlights = () => {
   const projects = [
     {
       title: "The Last Crusade",
-      description: "A reimagined version of Space Invaders with modern gameplay mechanics and visual effects.",
-      tags: ["C++", "OpenGL", "Game Design"]
+      description: "A game featuring immersive gameplay and modern graphics. Built with a custom rendering pipeline and physics system.",
+      tags: ["C++", "OpenGL", "SDL3"]
     },
     {
-      title: "Boss Rush Game",
-      description: "An untitled boss rush game featuring challenging encounters and precise combat mechanics.",
-      tags: ["Godot", "Game Design", "Pixel Art"]
+      title: "Unnamed Game",
+      description: "Work-in-progress game using the same technology stack as The Last Crusade. Features advanced rendering techniques and gameplay mechanics.",
+      tags: ["C++", "OpenGL", "SDL3"]
     }
   ];
 

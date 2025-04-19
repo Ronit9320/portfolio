@@ -42,6 +42,15 @@ function App() {
       }
     }
   }, [])
+  
+  const scrollDown = () => {
+    const mainElement = mainRef.current;
+    if (!mainElement) return;
+    
+    const targetPosition = window.innerHeight;
+    // Immediately scroll to target position
+    mainElement.scrollTop = targetPosition;
+  };
 
   return (
     <Router>
@@ -82,6 +91,14 @@ function App() {
                     <div className="flex justify-center space-x-6 flex-wrap gap-4 mt-4">
                       <Link to="/projects" className="submit-button">View Projects</Link>
                       <Link to="/contact" className="submit-button">Get in Touch</Link>
+                    </div>
+                    
+                    <div className="scroll-indicator-container mt-16" onClick={scrollDown}>
+                      <div className="scroll-indicator">
+                        <div className="scroll-arrow"></div>
+                        <div className="scroll-arrow"></div>
+                        <div className="scroll-arrow"></div>
+                      </div>
                     </div>
                   </div>
                 </section>

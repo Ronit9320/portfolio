@@ -20,6 +20,9 @@
         --accent-color: #e74c3c;
         --background-color: #f5f5f5;
         --text-color: #2c3e50;
+        --scrollbar-track: rgba(0, 0, 0, 0.05);
+        --scrollbar-thumb: var(--primary-color);
+        --scrollbar-thumb-hover: var(--accent-color);
       }
       
       body {
@@ -27,6 +30,45 @@
         font-family: 'MedievalSharp', cursive;
         background-color: var(--background-color);
         color: var(--text-color);
+        overflow-y: overlay; /* Uses overlay to prevent layout shifts */
+      }
+      
+      /* Custom Scrollbar */
+      body::-webkit-scrollbar {
+        width: 8px; /* Default size */
+      }
+      
+      body::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+      }
+      
+      body::-webkit-scrollbar-thumb {
+        background-color: var(--scrollbar-thumb);
+        border-radius: 20px;
+        border: 2px solid transparent;
+        background-clip: content-box;
+        transition: all 0.3s ease;
+      }
+      
+      /* When body is hovered, make scrollbar larger */
+      body:hover::-webkit-scrollbar {
+        width: 16px; /* Larger size on hover */
+      }
+      
+      body:hover::-webkit-scrollbar-thumb {
+        background-color: var(--scrollbar-thumb-hover);
+        border: 3px solid transparent;
+      }
+      
+      /* Firefox */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+      }
+      
+      body:hover {
+        scrollbar-width: auto;
+        scrollbar-color: var(--scrollbar-thumb-hover) var(--scrollbar-track);
       }
       
       .pixel-border {

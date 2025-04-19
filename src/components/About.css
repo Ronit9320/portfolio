@@ -1,0 +1,17 @@
+/* About page specific styles to fix alignment issues */
+.about-section .background-content h3,
+.about-section .background-content p {
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+
+.about-section .profile-image {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* Force override any text centering */
+.about-section .content-column * {
+  text-align: left !important;
+} 

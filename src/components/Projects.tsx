@@ -3,39 +3,33 @@ import React from 'react';
 const Projects: React.FC = () => {
   const projects = [
     {
-      title: "Game Engine Architecture",
+      title: "Neovim Config",
+      description: "Custom Neovim configuration with focus on creating a productive development environment. Features include custom keybindings, plugins, and optimized workflows.",
+      technologies: ["Lua", "Neovim", "API Integration"],
+      symbol: "⚜"
+    },
+    {
+      title: "The Last Crusade",
+      description: "A game featuring immersive gameplay and modern graphics. Built with a custom rendering pipeline and physics system.",
+      technologies: ["C++", "OpenGL", "SDL3"],
+      symbol: "⚜"
+    },
+    {
+      title: "Unnamed Game",
+      description: "Work-in-progress game using the same technology stack as The Last Crusade. Features advanced rendering techniques and gameplay mechanics.",
+      technologies: ["C++", "OpenGL", "SDL3"],
+      symbol: "⚜"
+    },
+    {
+      title: "CMake Generator CLI",
+      description: "Command-line tool for automatically generating CMake project structures. Streamlines project setup and build configuration management.",
+      technologies: ["C++", "CMake", "CLI Development"],
+      symbol: "⚜"
+    },
+    {
+      title: "Game Engine",
       description: "Custom game engine with focus on low-level optimization and memory management. Designed for maximum performance with minimal resource usage.",
       technologies: ["C++", "OpenGL", "Custom Memory Allocator"],
-      symbol: "⚜"
-    },
-    {
-      title: "Physics Simulation",
-      description: "Real-time physics engine with collision detection and response. Optimized for large-scale simulations with thousands of interacting objects.",
-      technologies: ["C++", "SIMD", "Multithreading"],
-      symbol: "⚜"
-    },
-    {
-      title: "Graphics Pipeline",
-      description: "Modern graphics pipeline implementation with PBR rendering. Features include dynamic lighting, shadow mapping, and post-processing effects.",
-      technologies: ["Vulkan", "GLSL", "Compute Shaders"],
-      symbol: "⚜"
-    },
-    {
-      title: "Audio Engine",
-      description: "Custom audio system with 3D spatial sound and dynamic mixing. Designed for low-latency playback with minimal CPU overhead.",
-      technologies: ["C++", "OpenAL", "DSP"],
-      symbol: "⚜"
-    },
-    {
-      title: "Entity Component System",
-      description: "High-performance ECS architecture for game object management. Optimized for cache coherency and parallel processing.",
-      technologies: ["C++", "Data-Oriented Design", "Memory Pools"],
-      symbol: "⚜"
-    },
-    {
-      title: "Networking Framework",
-      description: "Low-latency networking solution for real-time multiplayer games. Includes state synchronization and prediction algorithms.",
-      technologies: ["C++", "UDP", "Serialization"],
       symbol: "⚜"
     },
   ];

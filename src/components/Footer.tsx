@@ -20,20 +20,20 @@ const Footer: React.FC = () => {
               GitHub
             </a>
             <a 
-              href="https://linkedin.com/in/yourusername" 
+              href="https://youtube.com/yourusername" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-[#ADD8E6] transition-colors duration-300"
             >
-              LinkedIn
+              YouTube
             </a>
             <a 
-              href="https://twitter.com/yourusername" 
+              href="https://x.com/yourusername" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-[#ADD8E6] transition-colors duration-300"
             >
-              Twitter
+              X
             </a>
           </div>
         </div>
