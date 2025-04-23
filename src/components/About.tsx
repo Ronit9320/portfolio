@@ -16,8 +16,7 @@ const About: React.FC = () => {
       <div className="container mx-auto">
         <h2 className="section-title text-center text-glow">About Me</h2>
         <p className="text-center mb-12 max-w-2xl mx-auto">
-          A passionate low-level game developer with a focus on performance and
-          efficiency.
+          Self-taught developer passionate about building from first principles
         </p>
 
         <div className="mythical-divider mx-auto w-3/4 mb-12"></div>
@@ -49,18 +48,13 @@ const About: React.FC = () => {
                     Background
                   </h3>
                   <p className="mb-4" style={forcedLeftStyle}>
-                    I'm a passionate low-level game developer with a strong
-                    focus on performance optimization, memory management, and
-                    graphics programming. My journey in game development started
-                    with a fascination for how games work at their core, leading
-                    me to specialize in the technical aspects that make games
-                    run smoothly and efficiently.
+                    I'm a self-taught developer with a deep passion for game development and low-level programming. 
+                    My journey began with a curiosity about how games work at their core, leading me to explore 
+                    everything from graphics programming to system internals.
                   </p>
                   <p className="mb-6" style={forcedLeftStyle}>
-                    With over 6 years of experience in the industry, I've worked
-                    on various projects ranging from indie games to AAA titles,
-                    always focusing on optimizing performance and creating
-                    robust technical foundations.
+                    As an Arch Linux enthusiast, I believe in understanding systems from the ground up. This philosophy 
+                    drives my approach to game development, where I focus on building everything from first principles.
                   </p>
 
                   <h3
@@ -70,23 +64,20 @@ const About: React.FC = () => {
                     My Approach
                   </h3>
                   <p className="mb-6" style={forcedLeftStyle}>
-                    I believe that great games are built on solid technical
-                    foundations. By focusing on the low-level aspects of game
-                    development, I help create experiences that not only look
-                    beautiful but also run efficiently across a wide range of
-                    hardware.
+                    I learn through building projects and diving deep into technical documentation. Currently developing 
+                    my own game engine, exploring graphics programming with OpenGL and SDL, and contributing to open source 
+                    projects. I regularly share my learning journey and insights on X.
                   </p>
 
                   <div
                     className="flex flex-wrap gap-2 mb-6"
                     style={forcedLeftStyle}
                   >
-                    <span className="project-tag">Game Engine Development</span>
-                    <span className="project-tag">Graphics Programming</span>
-                    <span className="project-tag">
-                      Performance Optimization
-                    </span>
-                    <span className="project-tag">Memory Management</span>
+                    <span className="project-tag">C++</span>
+                    <span className="project-tag">OpenGL</span>
+                    <span className="project-tag">SDL</span>
+                    <span className="project-tag">Game Engines</span>
+                    <span className="project-tag">Linux</span>
                   </div>
                 </div>
               </div>
@@ -96,72 +87,64 @@ const About: React.FC = () => {
           <div className="mythical-divider mx-auto w-3/4 my-12"></div>
 
           <h3 className="text-2xl font-trojan mb-6 text-center text-accent-1">
-            Technical Expertise
+            Technical Interests
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <div className="mythical-border h-full">
               <h4 className="text-xl font-trojan mb-4">
-                Game Engine Development
+                Game Development
               </h4>
               <ul className="list-disc list-inside space-y-2 text-gray-700">
-                <li>Custom engine architecture</li>
-                <li>Memory optimization</li>
-                <li>Resource management</li>
-                <li>Rendering pipeline</li>
-                <li>Cross-platform development</li>
+                <li>Custom Game Engine Development</li>
+                <li>Graphics Programming (OpenGL)</li>
+                <li>Shader Development</li>
+                <li>Raytracing</li>
+                <li>Game Networking</li>
               </ul>
             </div>
             <div className="mythical-border h-full">
               <h4 className="text-xl font-trojan mb-4">
-                Performance Optimization
+                System Programming
               </h4>
               <ul className="list-disc list-inside space-y-2 text-gray-700">
-                <li>SIMD programming</li>
-                <li>Cache optimization</li>
-                <li>Multithreading</li>
-                <li>Profiling and analysis</li>
-                <li>Memory layout optimization</li>
+                <li>Kernel Development</li>
+                <li>Low-level Optimization</li>
+                <li>System Architecture</li>
+                <li>Open Source Development</li>
+                <li>Linux Systems</li>
               </ul>
             </div>
           </div>
 
           <h3 className="text-2xl font-trojan mb-6 text-center text-accent-1">
-            Professional Experience
+            Current Focus
           </h3>
 
           <div className="space-y-6 mb-12">
             <div className="mythical-border">
               <h4 className="text-xl font-trojan">
-                Senior Game Engine Developer
+                Game Engine Development
               </h4>
-              <p className="text-gray-600 mb-2">
-                Tech Games Studio | 2020 - Present
-              </p>
               <p className="text-gray-700">
-                Leading the development of a custom game engine, focusing on
-                performance optimization and memory management for large-scale
-                open-world games. Implemented a custom memory allocator that
-                reduced fragmentation by 60% and improved loading times by 40%.
+                Building a custom game engine from scratch, focusing on modern graphics techniques,
+                efficient memory management, and clean architecture. Exploring advanced concepts like
+                raytracing and shader programming.
               </p>
             </div>
             <div className="mythical-border">
-              <h4 className="text-xl font-trojan">Graphics Programmer</h4>
-              <p className="text-gray-600 mb-2">
-                Indie Game Studio | 2018 - 2020
-              </p>
+              <h4 className="text-xl font-trojan">Open Source & Learning</h4>
               <p className="text-gray-700">
-                Developed and optimized rendering systems, implemented custom
-                shaders, and improved overall graphics performance. Created a
-                deferred rendering pipeline that supported hundreds of dynamic
-                lights with minimal performance impact.
+                Actively contributing to open source projects while expanding my knowledge through
+                technical books and hands-on project development. Sharing insights and experiences
+                with the developer community on X.
               </p>
             </div>
           </div>
 
           <div className="text-center">
             <Link to="/contact" className="submit-button">
-              Let's Work Together
+              Get In Touch
             </Link>
           </div>
         </div>
