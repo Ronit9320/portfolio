@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
           </div>
           <div className="flex space-x-6">
             <a 
-              href="https://github.com/yourusername" 
+              href="https://github.com/Ronit9320" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-[#ADD8E6] transition-colors duration-300"
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
               GitHub
             </a>
             <a 
-              href="https://youtube.com/yourusername" 
+              href="https://youtube.com/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-[#ADD8E6] transition-colors duration-300"
@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
               YouTube
             </a>
             <a 
-              href="https://x.com/yourusername" 
+              href="https://x.com/guardian9320" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-[#ADD8E6] transition-colors duration-300"
