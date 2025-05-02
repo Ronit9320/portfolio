@@ -2,17 +2,44 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Professional Game Development Portfolio showcasing projects, skills, and experience in game development" />
+    <meta name="keywords" content="game development, portfolio, game developer, game design, game programming" />
+    <meta name="author" content="Your Name" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://username.github.io/gamedev-portfolio/" />
+    <meta property="og:title" content="GameDev Portfolio" />
+    <meta property="og:description" content="Professional Game Development Portfolio showcasing projects, skills, and experience in game development" />
+    <meta property="og:image" content="/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://username.github.io/gamedev-portfolio/" />
+    <meta property="twitter:title" content="GameDev Portfolio" />
+    <meta property="twitter:description" content="Professional Game Development Portfolio showcasing projects, skills, and experience in game development" />
+    <meta property="twitter:image" content="/og-image.jpg" />
+
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/leaf.svg?v=5">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=5">
     <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#D2691E">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#D2691E" />
+    
     <title>GameDev Portfolio</title>
+    
+    <!-- Preconnect to external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/src/main.tsx" as="script">
+    <link rel="preload" href="/src/App.css" as="style">
+    
     <style>
       :root {
         --primary-color: #2c3e50;
