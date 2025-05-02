@@ -1,63 +1,55 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useParams, Link } from 'react-router-dom';
 
-interface BlogPostProps {
-  title: string;
-  description: string;
-  date: string;
-  content: string;
-  tags: string[];
-  readingTime: string;
-  slug: string;
-  author: string;
-}
+const BlogPost: React.FC = () => {
+  const { slug } = useParams<{ slug: string }>();
 
-const BlogPost: React.FC<BlogPostProps> = ({
-  title,
-  description,
-  date,
-  content,
-  tags,
-  readingTime,
-  slug,
-  author
-}) => {
-  // Schema markup for individual blog post
+  // This would typically come from a database or CMS
+  const post = {
+    title: "Welcome to My Blog",
+    date: "2025-05-02",
+    content: `
+      <div class="text-center py-12">
+        <h2 class="text-2xl font-trojan mb-4">Blogs Starting Soon</h2>
+        <p class="text-gray-600">Stay tuned for upcoming content about game development, programming insights, and technical deep-dives.</p>
+      </div>
+    `,
+    tags: ["Game Development", "Programming", "Learning Journey"],
+    readingTime: "5 min read"
+  };
+
+  // Schema markup for blog post
   const postSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": title,
-    "description": description,
-    "datePublished": date,
+    "headline": post.title,
+    "datePublished": post.date,
     "author": {
       "@type": "Person",
-      "name": author
+      "name": "Ronit Shah"
     },
-    "keywords": tags.join(", "),
-    "url": `https://username.github.io/gamedev-portfolio/blog/${slug}`,
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://username.github.io/gamedev-portfolio/blog/${slug}`
-    }
+    "description": "Welcome to my game development blog where I share insights and experiences.",
+    "keywords": post.tags.join(", ")
   };
 
   return (
     <>
       <Helmet>
-        <title>{title} - GameDev Blog</title>
-        <meta name="description" content={description} />
-        <meta name="keywords" content={tags.join(", ")} />
+        <title>{post.title} - GameDev Blog</title>
+        <meta name="description" content="Welcome to my game development blog where I share insights and experiences." />
+        <meta name="keywords" content={post.tags.join(", ")} />
         
         {/* Open Graph tags */}
-        <meta property="og:title" content={`${title} - GameDev Blog`} />
-        <meta property="og:description" content={description} />
+        <meta property="og:title" content={`${post.title} - GameDev Blog`} />
+        <meta property="og:description" content="Welcome to my game development blog where I share insights and experiences." />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://username.github.io/gamedev-portfolio/blog/${slug}`} />
+        <meta property="og:url" content={`https://ronit9320.github.io/gamedev-portfolio/blog/${slug}`} />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
+        <meta name="twitter:title" content={`${post.title} - GameDev Blog`} />
+        <meta name="twitter:description" content="Welcome to my game development blog where I share insights and experiences." />
         
         {/* Schema.org markup */}
         <script type="application/ld+json">
@@ -65,55 +57,39 @@ const BlogPost: React.FC<BlogPostProps> = ({
         </script>
       </Helmet>
 
-      <article className="section" itemScope itemType="https://schema.org/BlogPosting">
-        <div className="container mx-auto max-w-4xl">
-          <header className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-trojan mb-4" itemProp="headline">
-              {title}
-            </h1>
-            <div className="flex items-center gap-4 text-gray-600 mb-4">
-              <span itemProp="datePublished">{date}</span>
-              <span>•</span>
-              <span>{readingTime}</span>
-            </div>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {tags.map((tag, index) => (
-                <span 
-                  key={index}
-                  className="px-3 py-1 bg-white bg-opacity-50 rounded-full text-sm text-forest-700"
-                  itemProp="keywords"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </header>
+      <section className="section">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto">
+            <Link to="/blog" className="fancy-link inline-block mb-8">
+              ← Back to Blog
+            </Link>
 
-          <div 
-            className="prose prose-lg max-w-none"
-            itemProp="articleBody"
-            dangerouslySetInnerHTML={{ __html: content }}
-          />
-
-          <footer className="mt-12 pt-6 border-t border-gray-200">
-            <div className="flex items-center justify-between">
-              <div className="text-sm text-gray-600">
-                Written by <span itemProp="author">{author}</span>
+            <article className="blog-card" itemScope itemType="https://schema.org/BlogPosting">
+              <div className="p-6">
+                <div className="blog-date mb-2" itemProp="datePublished">
+                  {new Date(post.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </div>
+                <div className="flex items-center gap-2 mb-6">
+                  <h1 className="text-3xl font-trojan text-glow" itemProp="headline">
+                    {post.title}
+                  </h1>
+                  <span className="text-gray-400">•</span>
+                  <span className="text-sm text-gray-600">{post.readingTime}</span>
+                </div>
+                <div 
+                  className="prose prose-lg max-w-none"
+                  itemProp="articleBody"
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                />
               </div>
-              <div className="flex gap-4">
-                <a 
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(`https://username.github.io/gamedev-portfolio/blog/${slug}`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent-1 hover:text-gray-800 transition-colors"
-                >
-                  Share on X
-                </a>
-              </div>
-            </div>
-          </footer>
+            </article>
+          </div>
         </div>
-      </article>
+      </section>
     </>
   );
 };

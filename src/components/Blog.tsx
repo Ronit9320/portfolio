@@ -1,12 +1,13 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 const Blog: React.FC = () => {
   const posts = [
     {
-      title: "Welcome to My Blog",
-      excerpt: "Join me as I share insights from my journey in game development and programming. I'll be documenting my experiences, learnings, and thoughts on various aspects of software development and game creation.",
-      date: "2024-03-20",
+      title: "Welcome",
+      excerpt: "Stay Tuned for more Blogs",
+      date: "2025-05-02",
       slug: "welcome",
       tags: ["Game Development", "Programming", "Learning Journey"],
       readingTime: "5 min read"
@@ -40,7 +41,7 @@ const Blog: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>GameDev Blog - Insights on Game Development and Programming</title>
+        <title>Gamedev Blogs- Insights on Game Development and Programming</title>
         <meta name="description" content="Explore insights, tutorials, and experiences in game development, programming, and technical deep-dives." />
         <meta name="keywords" content="game development blog, programming tutorials, game engine development, OpenGL, Vulkan, C++" />
         
@@ -63,7 +64,7 @@ const Blog: React.FC = () => {
 
       <section className="section">
         <div className="container mx-auto">
-          <h1 className="section-title text-center text-glow">GameDev Blog</h1>
+          <h1 className="section-title text-center text-glow">Blogs</h1>
           <p className="text-center mb-12 max-w-2xl mx-auto">
             Technical insights, tutorials, and experiences from my journey in game development and programming.
           </p>
@@ -107,13 +108,13 @@ const Blog: React.FC = () => {
                     <span className="text-gray-400">•</span>
                     <span className="text-sm text-gray-600">{post.readingTime}</span>
                   </div>
-                  <a 
-                    href={`/blog/${post.slug}`}
+                  <Link 
+                    to={`/blog/${post.slug}`}
                     className="fancy-link inline-block mt-4 font-semibold"
                     itemProp="url"
                   >
                     Read More
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}

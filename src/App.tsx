@@ -6,6 +6,7 @@ import Navigation from './components/Navigation'
 import Hero from './components/Hero'
 import Projects from './components/Projects'
 import Blog from './components/Blog'
+import BlogPost from './components/BlogPost'
 import About from './components/About'
 import Contact from './components/Contact'
 import ScrollToTop from './components/ScrollToTop'
@@ -208,7 +209,7 @@ function App() {
                       <div className="blog-preview">
                         <div className="blog-card">
                           <div className="p-6">
-                            <div className="blog-date">March 20, 2024</div>
+                            <div className="blog-date">May 2, 2025</div>
                             <h3 className="text-xl font-trojan mb-2">Welcome to My Blog</h3>
                             <p className="blog-excerpt">
                               Join me as I share insights from my journey in game development and programming. 
@@ -253,6 +254,7 @@ function App() {
               } />
               <Route path="/projects" element={<Projects />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
