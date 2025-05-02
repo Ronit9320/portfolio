@@ -6,25 +6,26 @@ const Navigation: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
+      const shouldBeScrolled = window.scrollY > 50;
+      if (shouldBeScrolled !== scrolled) {
+        setScrolled(shouldBeScrolled);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrolled]);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 flex justify-center px-4 ${
-      scrolled 
-        ? 'bg-[#F8F4E3]/75 backdrop-blur-sm py-2 shadow-md' 
-        : 'bg-gradient-to-r from-[#F8F4E3]/85 to-[#E8E4D3]/85 backdrop-blur-sm py-3'
-    }`}>
+    <nav 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 flex justify-center px-4 ${
+        scrolled 
+          ? 'bg-[#F8F4E3]/75 backdrop-blur-sm py-2 shadow-md' 
+          : 'bg-gradient-to-r from-[#F8F4E3]/85 to-[#E8E4D3]/85 backdrop-blur-sm py-3'
+      }`}
+      role="navigation"
+      aria-label="Main navigation"
+    >
       <ul className="flex justify-center space-x-8">
         <li>
           <Link 
