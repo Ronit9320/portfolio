@@ -5,7 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Professional Game Development Portfolio showcasing projects, skills, and experience in game development" />
     <meta name="keywords" content="game development, portfolio, game developer, game design, game programming" />
-    <meta name="author" content="Your Name" />
+    <meta name="author" content="Ronit Shah" />
+    
+    <!-- Handle redirects from 404 page -->
+    <script>
+      (function(){
+        // Check if we were redirected from the 404 page
+        if (sessionStorage.redirect) {
+          // Save the redirect URL
+          var redirectUrl = sessionStorage.redirect;
+          // Remove the redirect URL from sessionStorage
+          delete sessionStorage.redirect;
+          // Check if there's a path after the domain
+          var redirectPath = redirectUrl.split(location.host + '/')[1];
+          // If there's a path, handle it
+          if (redirectPath && redirectPath.length > 0) {
+            history.replaceState(null, null, '/' + redirectPath);
+          }
+        }
+      })();
+    </script>
+    
+    <!-- GitHub Pages SPA routing -->
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -22,8 +58,8 @@
     <meta property="twitter:image" content="./og-image.jpg" />
 
     <!-- Favicons -->
-    <link rel="icon" type="image/svg+xml" href="./leaf.svg?v=5">
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=5">
+    <link rel="icon" type="image/svg+xml" href="./leaf.svg">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
     <link rel="icon" href="./favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="./apple-touch-icon.png">
     <link rel="manifest" href="./site.webmanifest">
@@ -35,112 +71,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Press+Start+2P&display=swap" rel="stylesheet">
-    
-    <!-- Preload critical assets -->
-    <link rel="preload" href="./src/main.tsx" as="script">
-    <link rel="preload" href="./src/App.css" as="style">
-    
-    <style>
-      :root {
-        --primary-color: #2c3e50;
-        --secondary-color: #3498db;
-        --accent-color: #e74c3c;
-        --background-color: #f5f5f5;
-        --text-color: #2c3e50;
-        --scrollbar-track: rgba(0, 0, 0, 0.05);
-        --scrollbar-thumb: var(--primary-color);
-        --scrollbar-thumb-hover: var(--accent-color);
-      }
-      
-      body {
-        margin: 0;
-        font-family: 'MedievalSharp', cursive;
-        background-color: var(--background-color);
-        color: var(--text-color);
-        overflow-y: overlay; /* Uses overlay to prevent layout shifts */
-      }
-      
-      /* Custom Scrollbar */
-      body::-webkit-scrollbar {
-        width: 8px; /* Default size */
-      }
-      
-      body::-webkit-scrollbar-track {
-        background: var(--scrollbar-track);
-      }
-      
-      body::-webkit-scrollbar-thumb {
-        background-color: var(--scrollbar-thumb);
-        border-radius: 20px;
-        border: 2px solid transparent;
-        background-clip: content-box;
-        transition: all 0.3s ease;
-      }
-      
-      /* When body is hovered, make scrollbar larger */
-      body:hover::-webkit-scrollbar {
-        width: 16px; /* Larger size on hover */
-      }
-      
-      body:hover::-webkit-scrollbar-thumb {
-        background-color: var(--scrollbar-thumb-hover);
-        border: 3px solid transparent;
-      }
-      
-      /* Firefox */
-      * {
-        scrollbar-width: thin;
-        scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-      }
-      
-      body:hover {
-        scrollbar-width: auto;
-        scrollbar-color: var(--scrollbar-thumb-hover) var(--scrollbar-track);
-      }
-      
-      .pixel-border {
-        border: 2px solid var(--primary-color);
-        box-shadow: 4px 4px 0 var(--primary-color);
-      }
-      
-      .magic-button {
-        font-family: 'Press Start 2P', cursive;
-        background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
-        border: none;
-        padding: 1rem 2rem;
-        color: white;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
-      
-      .magic-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      }
-      
-      .magic-button::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(
-          45deg,
-          transparent,
-          rgba(255,255,255,0.1),
-          transparent
-        );
-        transform: rotate(45deg);
-        transition: all 0.3s ease;
-      }
-      
-      .magic-button:hover::after {
-        transform: rotate(45deg) translate(100%, 100%);
-      }
-    </style>
   </head>
   <body>
     <div id="root"></div>

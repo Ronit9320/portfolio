@@ -5,7 +5,7 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './',
+  base: 'https://ronit9320.github.io/Ronit9320.github.io/',
   root: '.',
   publicDir: 'public',
   resolve: {
