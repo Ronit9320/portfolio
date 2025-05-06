@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import './App.css'
-import Navigation from './components/Navigation'
-import Hero from './components/Hero'
 import Projects from './components/Projects'
 import Blog from './components/Blog'
 import BlogPost from './components/BlogPost'
@@ -88,7 +86,7 @@ function App() {
                       <div className="decorative-corner"></div>
                       <div className="flex justify-center mb-8 mt-8 relative z-20">
                         <img
-                          src="/profile2.png"
+                          src="./profile2.png"
                           alt="Profile"
                           className="rounded-full border-4 border-accent-1 shadow-lg w-36 h-36 object-cover relative"
                           style={{

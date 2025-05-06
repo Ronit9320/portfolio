@@ -1,16 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./About.css"; // Import the About-specific CSS file
 
 const About: React.FC = () => {
-  // Inline styles to forcefully override any centering
-  const forcedLeftStyle = {
-    textAlign: "left" as const,
-    marginLeft: 0,
-    display: "block",
-    width: "100%",
-  };
-
   return (
     <section className="section">
       <div className="container mx-auto">

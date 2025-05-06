@@ -12,12 +12,16 @@ const ToggleGroupContext = React.createContext<ToggleGroupContextValue>({
   variant: "default",
 })
 
-interface ToggleGroupProps
-  extends React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root>,
-    ToggleGroupContextValue {
-  /** The orientation of the toggle group */
-  orientation?: "horizontal" | "vertical"
-}
+type ToggleGroupProps = (
+  | ToggleGroupPrimitive.ToggleGroupSingleProps
+  | ToggleGroupPrimitive.ToggleGroupMultipleProps
+) &
+  ToggleGroupContextValue & {
+    /** The orientation of the toggle group */
+    orientation?: "horizontal" | "vertical"
+    className?: string
+    children?: React.ReactNode
+  }
 
 const ToggleGroup = React.forwardRef<
   React.ElementRef<typeof ToggleGroupPrimitive.Root>,
