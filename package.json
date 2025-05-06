@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "homepage": "https://username.github.io/gamedev-portfolio",
+  "homepage": "https://Ronit9320.github.io/Ronit9320.github.io",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -72,7 +72,7 @@
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "gh-pages": "^6.1.1",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.3.6",
     "typescript": "^5.3.3",
