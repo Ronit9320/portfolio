@@ -20,7 +20,7 @@ const Blog: React.FC = () => {
     "@type": "Blog",
     "name": "GameDev Portfolio Blog",
     "description": "Insights and experiences from game development and programming",
-    "url": "https://username.github.io/gamedev-portfolio/blog",
+    "url": "https://ronit9320.github.io/blog",
     "author": {
       "@type": "Person",
       "name": "Ronit Shah"
@@ -49,7 +49,7 @@ const Blog: React.FC = () => {
         <meta property="og:title" content="GameDev Blog - Technical Insights and Tutorials" />
         <meta property="og:description" content="Dive into game development, programming tutorials, and technical deep-dives." />
         <meta property="og:type" content="blog" />
-        <meta property="og:url" content="https://username.github.io/gamedev-portfolio/blog" />
+        <meta property="og:url" content="https://ronit9320.github.io/blog" />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />

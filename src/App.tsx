@@ -9,6 +9,12 @@ import About from './components/About'
 import Contact from './components/Contact'
 import ScrollToTop from './components/ScrollToTop'
 
+// Debug info to console
+console.log("App.tsx is loading");
+console.log("Current URL:", window.location.href);
+console.log("Current path:", window.location.pathname);
+console.log("Current hash:", window.location.hash);
+
 // Error boundary to catch rendering errors
 class ErrorBoundary extends Component<{children: React.ReactNode}, {hasError: boolean, error: Error | null}> {
   constructor(props: {children: React.ReactNode}) {

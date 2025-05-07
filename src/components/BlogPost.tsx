@@ -44,7 +44,7 @@ const BlogPost: React.FC = () => {
         <meta property="og:title" content={`${post.title} - GameDev Blog`} />
         <meta property="og:description" content="Welcome to my game development blog where I share insights and experiences." />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://ronit9320.github.io/gamedev-portfolio/blog/${slug}`} />
+        <meta property="og:url" content={`https://ronit9320.github.io/blog/${slug}`} />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />

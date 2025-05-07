@@ -9,9 +9,24 @@ const __dirname = path.dirname(__filename);
 const indexPath = path.join(__dirname, 'dist', 'index.html');
 let indexContent = fs.readFileSync(indexPath, 'utf8');
 
+console.log('Starting path fixes...');
+
 // Remove any hardcoded domain references in asset URLs
 indexContent = indexContent.replace(/https:\/\/ronit9320\.github\.io\/Ronit9320\.github\.io\//g, '');
 indexContent = indexContent.replace(/https:\/\/ronit9320\.github\.io\//g, '');
+
+// Fix favicon and other static assets
+indexContent = indexContent.replace(/<link rel="icon" .*? href="\/([^"]+)">/g, (match, p1) => {
+  return match.replace(`/${p1}`, `./${p1}`);
+});
+
+indexContent = indexContent.replace(/<link rel="apple-touch-icon" href="\/([^"]+)">/g, (match, p1) => {
+  return match.replace(`/${p1}`, `./${p1}`);
+});
+
+indexContent = indexContent.replace(/<link rel="manifest" href="\/([^"]+)">/g, (match, p1) => {
+  return match.replace(`/${p1}`, `./${p1}`);
+});
 
 // Fix asset paths for gh-pages (using relative paths instead of absolute)
 // Change from /assets/ to ./assets/
@@ -48,6 +63,15 @@ indexContent = indexContent.replace(/href="\/([^"]+)"/g, (match, p1) => {
 });
 
 // Fix image paths
+indexContent = indexContent.replace(/src="\/([^"]+)"/g, (match, p1) => {
+  // Don't change absolute URLs or URLs that start with http
+  if (p1.startsWith('http') || p1.startsWith('//')) {
+    return match;
+  }
+  return `src="./${p1}"`;
+});
+
+// Fix meta content paths
 indexContent = indexContent.replace(/content="\/([^"]+)"/g, (match, p1) => {
   // Don't change absolute URLs or URLs that start with http
   if (p1.startsWith('http') || p1.startsWith('//')) {
@@ -67,8 +91,18 @@ if (fs.existsSync(manifestPath)) {
   let manifestContent = fs.readFileSync(manifestPath, 'utf8');
   manifestContent = manifestContent.replace(/https:\/\/ronit9320\.github\.io\/Ronit9320\.github\.io\//g, './');
   manifestContent = manifestContent.replace(/https:\/\/ronit9320\.github\.io\//g, './');
+  manifestContent = manifestContent.replace(/"\/([^"]+)"/g, (match, p1) => {
+    if (p1.startsWith('http') || p1.startsWith('//')) {
+      return match;
+    }
+    return `"./${p1}"`;
+  });
   fs.writeFileSync(manifestPath, manifestContent);
   console.log('✅ Fixed paths in dist/site.webmanifest');
 }
+
+// Create a copy of index.html as index-debug.html for testing
+fs.copyFileSync(indexPath, path.join(__dirname, 'dist', 'index-debug.html'));
+console.log('✅ Created debug copy at dist/index-debug.html');
 
 console.log('All path fixes complete! 🎉'); 

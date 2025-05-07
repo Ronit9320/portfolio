@@ -3,203 +3,174 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>React Test</title>
+  <title>Debug Page</title>
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      line-height: 1.6;
-    }
-    .container {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background-color: #f9f9f9;
+      line-height: 1.6;
     }
-    .success {
-      color: green;
-      font-weight: bold;
+    pre {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
     }
     .error {
       color: red;
       font-weight: bold;
     }
-    pre {
-      background: #f0f0f0;
-      padding: 10px;
-      border-radius: 4px;
-      overflow: auto;
+    .success {
+      color: green;
+      font-weight: bold;
     }
-    button {
-      background: #4285f4;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-top: 10px;
+    h1 {
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    h2 {
+      margin-top: 30px;
     }
   </style>
-  <!-- React CDN Links -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>React CDN Test</h1>
-    <p>This page tests if React can render properly via CDN in your browser.</p>
-    
-    <!-- React will render here -->
-    <div id="root"></div>
-    
-    <h2>Environment Information</h2>
-    <div id="env-info"></div>
-    
-    <h2>Asset Tests</h2>
-    <div id="asset-tests">
-      <p>Testing asset accessibility...</p>
-    </div>
-
-    <h2>Console Output</h2>
-    <pre id="console-output">Loading...</pre>
-  </div>
+  <h1>GitHub Pages Debug Information</h1>
   
-  <!-- React Component -->
-  <script type="text/babel">
-    // Simple React component
-    function TestComponent() {
-      const [count, setCount] = React.useState(0);
-      
-      return (
-        <div style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '4px', marginBottom: '20px' }}>
-          <h3>React Test Component</h3>
-          <p className="success">✅ React is working!</p>
-          <p>Counter: {count}</p>
-          <button onClick={() => setCount(count + 1)}>Increment</button>
-        </div>
-      );
+  <h2>Page URL Information</h2>
+  <pre id="url-info"></pre>
+  
+  <h2>Asset Loading Test</h2>
+  <div id="asset-test-results"></div>
+  
+  <h2>Console Errors</h2>
+  <pre id="console-errors">Checking for errors...</pre>
+  
+  <h2>DOM Check</h2>
+  <pre id="dom-check"></pre>
+  
+  <h2>Environment</h2>
+  <pre id="environment"></pre>
+
+  <h2>Links to Test</h2>
+  <ul>
+    <li><a href="./" id="home-link">Home Page</a></li>
+    <li><a href="./test.html" id="test-link">Basic Test Page</a></li>
+    <li><a href="./projects" id="projects-link">Projects Page (SPA route)</a></li>
+    <li><a href="./notfound" id="notfound-link">Not Found Page (should redirect)</a></li>
+  </ul>
+  
+  <script>
+    // Display URL information
+    function displayUrlInfo() {
+      const urlInfo = document.getElementById('url-info');
+      urlInfo.textContent = `Current URL: ${window.location.href}
+Protocol: ${window.location.protocol}
+Hostname: ${window.location.hostname}
+Pathname: ${window.location.pathname}
+Hash: ${window.location.hash}
+Search: ${window.location.search}`;
     }
     
-    // Render the component
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<TestComponent />);
-    
-    // Display environment info
-    function displayEnvInfo() {
-      const envInfo = document.getElementById('env-info');
-      const info = [
-        `URL: ${window.location.href}`,
-        `Protocol: ${window.location.protocol}`,
-        `Host: ${window.location.host}`,
-        `Path: ${window.location.pathname}`,
-        `User Agent: ${navigator.userAgent}`,
-        `React Version: ${React.version}`,
-        `ReactDOM Version: ${ReactDOM.version}`
-      ];
-      
-      envInfo.innerHTML = `<pre>${info.join('\n')}</pre>`;
-    }
-    
-    // Test asset paths
-    function testAssets() {
-      const assetTests = document.getElementById('asset-tests');
-      const results = [];
-      
-      // Define assets to test
+    // Test asset loading
+    function testAssetLoading() {
+      const results = document.getElementById('asset-test-results');
       const assets = [
-        { path: './favicon.ico', type: 'image', name: 'Favicon' },
-        { path: './assets/index.js', type: 'script', name: 'Main JS' },
-        { path: './assets/index.css', type: 'style', name: 'Main CSS' }
+        { type: 'CSS', url: './assets/index-C6_SykNM.css' },
+        { type: 'JavaScript', url: './assets/index-qn-qDdv-.js' },
+        { type: 'Image', url: './favicon.svg' }
       ];
       
-      // Test each asset
-      assets.forEach(asset => {
-        const tester = asset.type === 'image' ? new Image() :
-                       asset.type === 'script' ? document.createElement('script') :
-                       document.createElement('link');
-        
-        if (asset.type === 'style') {
-          tester.rel = 'stylesheet';
-          tester.href = asset.path;
-        } else {
-          tester.src = asset.path;
-        }
-        
-        tester.onload = () => {
-          results.push(`<p class="success">✅ ${asset.name} (${asset.path}): Found</p>`);
-          updateResults();
-        };
-        
-        tester.onerror = () => {
-          results.push(`<p class="error">❌ ${asset.name} (${asset.path}): Not Found</p>`);
-          updateResults();
-        };
-        
-        // Start testing
-        if (asset.type === 'image') {
-          tester.src = asset.path;
-        } else if (asset.type === 'style') {
-          document.head.appendChild(tester);
-        } else {
-          document.body.appendChild(tester);
-        }
-      });
+      results.innerHTML = '<ul></ul>';
+      const list = results.querySelector('ul');
       
-      function updateResults() {
-        assetTests.innerHTML = results.join('');
-      }
+      assets.forEach(asset => {
+        const li = document.createElement('li');
+        const statusSpan = document.createElement('span');
+        
+        statusSpan.textContent = 'Testing...';
+        li.textContent = `${asset.type} (${asset.url}): `;
+        li.appendChild(statusSpan);
+        list.appendChild(li);
+        
+        fetch(asset.url)
+          .then(response => {
+            if (response.ok) {
+              statusSpan.textContent = 'Loaded successfully';
+              statusSpan.className = 'success';
+            } else {
+              statusSpan.textContent = `Failed with status ${response.status}`;
+              statusSpan.className = 'error';
+            }
+          })
+          .catch(error => {
+            statusSpan.textContent = `Error: ${error.message}`;
+            statusSpan.className = 'error';
+          });
+      });
     }
     
-    // Override console methods to capture output
-    (function setupConsoleCapture() {
-      const consoleOutput = document.getElementById('console-output');
-      const log = [];
-      
-      const originalConsole = {
-        log: console.log,
-        error: console.error,
-        warn: console.warn,
-        info: console.info
-      };
-      
-      function captureLog(type, args) {
-        const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
-        const message = Array.from(args).map(arg => 
-          typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
-        ).join(' ');
-        
-        log.push(`[${timestamp}] [${type}] ${message}`);
-        consoleOutput.textContent = log.join('\n');
-        return args; // Pass through for original console
-      }
-      
-      console.log = function() {
-        originalConsole.log.apply(console, captureLog('log', arguments));
-      };
+    // Collect console errors
+    function captureConsoleErrors() {
+      const errors = [];
+      const oldConsoleError = console.error;
       
       console.error = function() {
-        originalConsole.error.apply(console, captureLog('ERROR', arguments));
+        errors.push(Array.from(arguments).join(' '));
+        oldConsoleError.apply(console, arguments);
       };
       
-      console.warn = function() {
-        originalConsole.warn.apply(console, captureLog('WARN', arguments));
-      };
+      window.addEventListener('error', function(event) {
+        errors.push(`Script error: ${event.message} at ${event.filename}:${event.lineno}`);
+      });
       
-      console.info = function() {
-        originalConsole.info.apply(console, captureLog('info', arguments));
-      };
-      
-      // Log initial message
-      console.log('Console capture initialized');
-    })();
+      setTimeout(function() {
+        const errorsContainer = document.getElementById('console-errors');
+        if (errors.length > 0) {
+          errorsContainer.textContent = errors.join('\n');
+          errorsContainer.className = 'error';
+        } else {
+          errorsContainer.textContent = 'No console errors detected';
+          errorsContainer.className = 'success';
+        }
+      }, 2000);
+    }
+    
+    // Check DOM
+    function checkDOM() {
+      const domCheck = document.getElementById('dom-check');
+      domCheck.textContent = `
+Document ready state: ${document.readyState}
+Root element exists: ${!!document.getElementById('root')}
+Body children count: ${document.body.children.length}
+      `;
+    }
+    
+    // Display environment info
+    function displayEnvironment() {
+      const env = document.getElementById('environment');
+      env.textContent = `
+User Agent: ${navigator.userAgent}
+Window Size: ${window.innerWidth}x${window.innerHeight}
+Device Pixel Ratio: ${window.devicePixelRatio}
+      `;
+    }
+    
+    // Fix links
+    function updateLinks() {
+      // No changes needed as we're already using relative paths
+    }
     
     // Run all tests
-    displayEnvInfo();
-    testAssets();
+    window.onload = function() {
+      displayUrlInfo();
+      testAssetLoading();
+      captureConsoleErrors();
+      checkDOM();
+      displayEnvironment();
+      updateLinks();
+    };
   </script>
 </body>
 </html> 
