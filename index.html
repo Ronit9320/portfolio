@@ -43,6 +43,40 @@
       }(window.location))
     </script>
     
+    <!-- Error detection script -->
+    <script>
+      window.addEventListener('error', function(e) {
+        console.error('Global error caught:', e.message, 'at', e.filename, ':', e.lineno);
+        
+        // Only show error UI if this is not a script loading error
+        if (document.getElementById('root') && !document.getElementById('root').children.length && !document.getElementById('error-display')) {
+          setTimeout(function() {
+            // If after 5 seconds no content is rendered, show error message
+            if (!document.getElementById('root').children.length && !document.getElementById('error-display')) {
+              var errorDiv = document.createElement('div');
+              errorDiv.id = 'error-display';
+              errorDiv.style.padding = '20px';
+              errorDiv.style.margin = '20px';
+              errorDiv.style.backgroundColor = '#f8d7da';
+              errorDiv.style.border = '1px solid #f5c6cb';
+              errorDiv.style.borderRadius = '5px';
+              errorDiv.style.color = '#721c24';
+              errorDiv.innerHTML = '<h2>Application Error</h2>' +
+                '<p>The application failed to initialize. This could be due to:</p>' +
+                '<ul>' +
+                '<li>JavaScript errors during initialization</li>' +
+                '<li>Missing resources</li>' +
+                '<li>Incompatible browser</li>' +
+                '</ul>' +
+                '<p>Please check the browser console for more details or ' +
+                '<a href="./debug.html">visit the debug page</a>.</p>';
+              document.body.appendChild(errorDiv);
+            }
+          }, 5000);
+        }
+      });
+    </script>
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ronit9320.github.io/" />
@@ -74,6 +108,14 @@
   </head>
   <body>
     <div id="root"></div>
+    
+    <noscript>
+      <div style="padding: 20px; margin: 20px; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 5px; color: #856404;">
+        <h2>JavaScript Required</h2>
+        <p>This website requires JavaScript to function properly. Please enable JavaScript in your browser settings.</p>
+      </div>
+    </noscript>
+    
     <script type="module" src="./src/main.tsx"></script>
   </body>
 </html> 

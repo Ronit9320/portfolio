@@ -80,9 +80,29 @@ indexContent = indexContent.replace(/content="\/([^"]+)"/g, (match, p1) => {
   return `content="./${p1}"`;
 });
 
+// Fix the main.tsx path in index.html
+indexContent = indexContent.replace(
+  /<script type="module" src="\.\/src\/main\.tsx"><\/script>/g,
+  ''
+);
+
+// Update debug.html to use stable asset filenames
+const debugPath = path.join(__dirname, 'dist', 'debug.html');
+if (fs.existsSync(debugPath)) {
+  let debugContent = fs.readFileSync(debugPath, 'utf8');
+  
+  // Update asset references in the test function
+  debugContent = debugContent.replace(
+    /const assets = \[\s*{\s*type:\s*'CSS',\s*url:\s*'\.\/assets\/[^']+'\s*},\s*{\s*type:\s*'JavaScript',\s*url:\s*'\.\/assets\/[^']+'\s*},/g,
+    `const assets = [\n        { type: 'CSS', url: './assets/index.css' },\n        { type: 'JavaScript', url: './assets/index.js' },`
+  );
+  
+  fs.writeFileSync(debugPath, debugContent);
+  console.log('✅ Updated asset paths in dist/debug.html');
+}
+
 // Write the fixed content back
 fs.writeFileSync(indexPath, indexContent);
-
 console.log('✅ Fixed paths in dist/index.html');
 
 // Also check and fix the site.webmanifest if it's copied to dist
