@@ -5,7 +5,7 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Set to root slash for proper path resolution
+  base: '', // Empty string for root domain deployment with gh-pages
   root: '.',
   publicDir: 'public',
   resolve: {
