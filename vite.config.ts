@@ -5,7 +5,7 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: 'https://ronit9320.github.io/Ronit9320.github.io/',
+  base: '/', // Set to root slash for proper path resolution
   root: '.',
   publicDir: 'public',
   resolve: {
@@ -20,5 +20,15 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
+    // Ensure relative paths for assets
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        // Ensure proper URL for assets without hostname
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+      }
+    }
   },
 }) 
